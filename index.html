@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Parquet No-code</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Charger apache-arrow AVANT DuckDB -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/apache-arrow@14.0.2/+esm"
+      type="module"
+    ></script>
+    <!-- Tabulator CSS -->
+<link href="https://cdn.jsdelivr.net/npm/tabulator-tables@5.5.0/dist/css/tabulator.min.css" rel="stylesheet">
+
+<!-- Tabulator JS -->
+<script src="https://cdn.jsdelivr.net/npm/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Parquet/csv Explorer</h1>
+
+    <section class="controls">
+      <label>Fichier Parquet ou csv :</label>
+      <input type="file" id="fileInput" accept=".parquet,.csv" />
+      <p id="fileStatus">Aucun fichier chargé.</p>
+    </section>
+    <section class="query-preview">
+      <h2>📝 Requête SQL</h2>
+      <p>Vous pouvez éditer la requête SQL directement :</p>
+      <pre id="sqlPreview" contenteditable="true">SELECT ...</pre>
+    </section>
+    <section class="query-builder">
+      <h2>🔧 Construire une requête</h2>
+
+      <!-- <div class="row">
+        <label>Fonction d'agrégation :</label>
+        <select id="aggFunction">
+          <option value="COUNT(*)">COUNT</option>
+          <option value="SUM">SUM</option>
+          <option value="AVG">AVG</option>
+          <option value="MIN">MIN</option>
+          <option value="MAX">MAX</option>
+        </select>
+
+        <input type="text" id="aggColumn" placeholder="Colonne (ex: prix)" />
+      </div>
+      <div class="row">
+  <label>Grouper par :</label>
+  <select id="groupColumn" multiple size="5">
+    <option value="">Sélectionner une ou plusieurs colonnes</option>
+  </select>
+</div>
+      <div class="row">
+        <label>Filtre :</label>
+        <select id="filterColumn">
+          <option value="">Sélectionner une colonne</option>
+        </select>
+        <select id="filterOp">
+          <option value="=">=</option>
+          <option value="<"><</option>
+          <option value=">">></option>
+          <option value="<="><=</option>
+          <option value=">=">>=</option>
+          <option value="!=">!=</option>
+        </select>
+        <button id="loadModalities">🔄 Charger les modalités</button>
+        <select id="filterValueDropdown" style="display: none"></select>
+      </div> -->
+
+      <button id="runQuery">▶️ Exécuter</button>
+    </section>
+
+<section>
+  <h2>🧾 Résultats</h2>
+  <div id="resultTableContainer" style="margin-bottom: 1rem;"></div>
+  <button id="exportExcel">💾 Exporter en Excel</button>
+</section>
+
+    <!-- Les scripts type="module" APRÈS l'importmap -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
